@@ -1,0 +1,37 @@
+{
+  "name": "bitbucket-stupid-mcp",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "dist/server.js",
+  "bin": {
+    "bitbucket-stupid-mcp": "dist/server.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harnyk/bitbucket-stupid-mcp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/harnyk/bitbucket-stupid-mcp/issues"
+  },
+  "homepage": "https://github.com/harnyk/bitbucket-stupid-mcp#readme",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.16.0",
+    "axios": "^1.10.0",
+    "bitbucket": "^2.12.0",
+    "dotenv": "^17.2.0",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.15",
+    "typescript": "^5.8.3"
+  }
+}
