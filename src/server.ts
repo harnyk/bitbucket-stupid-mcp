@@ -1,14 +1,16 @@
 #!/usr/bin/env node
-
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { z } from 'zod';
-import * as dotenv from 'dotenv';
 import axios, { AxiosRequestConfig } from 'axios';
+import { z } from 'zod';
 
-dotenv.config();
+function fatal(...args: any[]): never {
+    console.error(...args);
+    process.exit(1);
+}
 
-const BITBUCKET_BASE_URL = 'https://git.namecheap.net';
+const BB_BASE_URL = process.env.BB_BASE_URL || fatal('Missing BB_BASE_URL');
+const BB_TOKEN = process.env.BB_TOKEN || fatal('Missing BB_TOKEN');
 
 // --- Shared Types ---
 type ToolOutput = { content: [{ type: 'text'; text: string }] };
@@ -22,9 +24,9 @@ async function bitbucketGet<T>(
     config: AxiosRequestConfig = {}
 ): Promise<BitbucketResponse<T>> {
     try {
-        const response = await axios.get<T>(`${BITBUCKET_BASE_URL}${url}`, {
+        const response = await axios.get<T>(`${BB_BASE_URL}${url}`, {
             headers: {
-                Authorization: `Bearer ${process.env.BB_TOKEN}`,
+                Authorization: `Bearer ${BB_TOKEN}`,
                 ...config.headers,
             },
             responseType: config.responseType || 'json',
